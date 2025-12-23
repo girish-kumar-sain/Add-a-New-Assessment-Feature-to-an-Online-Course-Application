@@ -1,0 +1,27 @@
+<h1>{{ course.name }}</h1>
+
+<form action="{% url 'submit' course.id %}" method="post">
+  {% csrf_token %}
+
+  {% for question in course.question_set.all %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <p><strong>{{ question.text }}</strong></p>
+
+        {% for choice in question.choice_set.all %}
+          <div class="form-check">
+            <input class="form-check-input"
+                   type="radio"
+                   name="question_{{ question.id }}"
+                   value="{{ choice.id }}">
+            <label class="form-check-label">
+              {{ choice.text }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">Submit Exam</button>
+</form>
