@@ -1,0 +1,9 @@
+<h1>Exam Result</h1>
+
+{% if passed %}
+  <h2 class="text-success">Congratulations</h2>
+{% else %}
+  <h2 class="text-danger">Better luck next time</h2>
+{% endif %}
+
+<p>Your score: {{ score }} / {{ total }}</p>
